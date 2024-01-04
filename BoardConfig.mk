@@ -20,7 +20,7 @@ TARGET_NO_RECOVERY := true
 
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
-TARGET_CPU_VARIANT := cortex-a72
+TARGET_CPU_VARIANT := cortex-a76
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 := 
 
@@ -68,10 +68,10 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/arpi/rpi4/bluetooth
-BOARD_CUSTOM_BT_CONFIG := device/arpi/rpi4/bluetooth/vnd_rpi4.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/arpi/rpi5/bluetooth
+BOARD_CUSTOM_BT_CONFIG := device/arpi/rpi5/bluetooth/vnd_rpi5.txt
 
 BOARD_SEPOLICY_DIRS := \
-    device/arpi/rpi4/sepolicy
+    device/arpi/rpi5/sepolicy
 
-DEVICE_MANIFEST_FILE := device/arpi/rpi4/manifest.xml
+DEVICE_MANIFEST_FILE := device/arpi/rpi5/manifest.xml

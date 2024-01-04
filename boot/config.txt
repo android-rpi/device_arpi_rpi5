@@ -2,8 +2,10 @@ kernel=Image.gz
 arm_64bit=1
 dtparam=krnbt=off
 dtparam=audio=on
-dtoverlay=vc4-kms-v3d-pi4,noaudio
+dtoverlay=vc4-kms-v3d-pi5,noaudio
 #dtoverlay=dwc2,dr_mode=peripheral
 initramfs ramdisk.img followkernel
 enable_uart=1
 disable_overscan=1
+dtparam=uart0=on
+dtparam=uart0_console

@@ -9,7 +9,7 @@
  Refer to http://source.android.com/source/building.html
 
   $ source build/envsetup.sh
-  $ lunch rpi4-eng
+  $ lunch rpi5-eng
   $ make ramdisk systemimage vendorimage
 
  Use -j[n] option with make, if build host has a good number of CPU cores.
@@ -25,13 +25,13 @@
   : use -L option for mkfs.ext4
  
 # Write system & vendor partition
-  $ cd out/target/product/rpi4
+  $ cd out/target/product/rpi5
   $ sudo dd if=system.img of=/dev/<p2> bs=1M
   $ sudo dd if=vendor.img of=/dev/<p3> bs=1M
 
 # Copy firmware & ramdisk to boot partition
-  device/arpi/rpi4/boot/* to p1:/
-  out/target/product/rpi4/ramdisk.img to p1:/
+  device/arpi/rpi5/boot/* to p1:/
+  out/target/product/rpi5/ramdisk.img to p1:/
 
 
 # Download & Build kernel source
@@ -39,5 +39,5 @@
 
 # Copy kernel binaries to boot partition
   <kernel directory>/out/arpi14-6.1/dist/Image.gz to p1:/
-  <kernel directory>/out/arpi14-6.1/dist/bcm2711-rpi-*.dtb to p1:/
-  <kernel directory>/out/arpi14-6.1/dist/vc4-kms-v3d-pi4.dtbo to p1:/overlays/
+  <kernel directory>/out/arpi14-6.1/dist/bcm2712-rpi-5-b.dtb to p1:/
+  <kernel directory>/out/arpi14-6.1/dist/vc4-kms-v3d-pi5.dtbo to p1:/overlays/

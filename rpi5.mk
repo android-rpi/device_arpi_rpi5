@@ -18,27 +18,23 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 USE_OEM_TV_APP := true
 $(call inherit-product, device/google/atv/products/atv_base.mk)
 
-PRODUCT_NAME := rpi4
-PRODUCT_DEVICE := rpi4
+PRODUCT_NAME := rpi5
+PRODUCT_DEVICE := rpi5
 PRODUCT_BRAND := arpi
 PRODUCT_MANUFACTURER := ARPi
-PRODUCT_MODEL := Raspberry Pi 4
+PRODUCT_MODEL := Raspberry Pi 5
 
 include frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk
 
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.drm.mode.force=1280x720 \
-    gralloc.drm.kms=/dev/dri/card0 \
+    gralloc.drm.kms=/dev/dri/card1 \
     ro.opengles.version=196609 \
     ro.hardware.vulkan=broadcom \
     ro.hardware.egl=mesa \
-    debug.stagefright.c2-poolmask=0x350000 \
-    ro.vendor.v4l2_codec2.decode_concurrent_instances=4 \
     ro.hdmi.device_type=4 \
     wifi.interface=wlan0 \
     ro.rfkilldisabled=1
-
-PRODUCT_SOONG_NAMESPACES += external/v4l2_codec2
 
 # application packages
 PRODUCT_PACKAGES += \
@@ -52,13 +48,12 @@ PRODUCT_PACKAGES += \
 
 # system packages
 PRODUCT_PACKAGES += \
-    gralloc.rpi4 \
+    gralloc.rpi5 \
     vulkan.broadcom \
-    memtrack.rpi4 \
-    audio.primary.rpi4 \
+    memtrack.rpi5 \
+    audio.primary.rpi5 \
     audio.usb.default \
     audio.r_submix.default \
-    libc2plugin_store \
     wificond \
     wifilogd \
     wpa_supplicant \
@@ -98,7 +93,6 @@ PRODUCT_PACKAGES += \
     android.hardware.tv.hdmi.connection-service \
     android.hardware.tv.hdmi.cec-service \
     android.hardware.tv.hdmi.earc-service \
-    android.hardware.media.c2@1.0-service-v4l2 \
     hwservicemanager \
     vndservicemanager
 
@@ -116,33 +110,26 @@ PRODUCT_COPY_FILES := \
     frameworks/native/data/etc/android.hardware.camera.external.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.external.xml \
     $(LOCAL_PATH)/etc/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml \
     $(LOCAL_PATH)/init.usb.rc:root/init.usb.rc \
-    $(LOCAL_PATH)/init.rpi4.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.rpi4.rc \
-    $(LOCAL_PATH)/init.rpi4.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.rpi4.usb.rc \
+    $(LOCAL_PATH)/init.rpi5.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.rpi5.rc \
+    $(LOCAL_PATH)/init.rpi5.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.rpi5.usb.rc \
     $(LOCAL_PATH)/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
-    $(LOCAL_PATH)/fstab.rpi4:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.rpi4 \
-    $(LOCAL_PATH)/fstab.rpi4:$(TARGET_COPY_OUT_RAMDISK)/fstab.rpi4 \
+    $(LOCAL_PATH)/fstab.rpi5:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.rpi5 \
+    $(LOCAL_PATH)/fstab.rpi5:$(TARGET_COPY_OUT_RAMDISK)/fstab.rpi5 \
     $(LOCAL_PATH)/Generic.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/Generic.kl \
     $(LOCAL_PATH)/firmware/brcm/brcmfmac43455-sdio.bin:root/lib/firmware/brcm/brcmfmac43455-sdio.bin \
     $(LOCAL_PATH)/firmware/brcm/brcmfmac43455-sdio.bin:$(TARGET_COPY_OUT_RAMDISK)/lib/firmware/brcm/brcmfmac43455-sdio.bin \
     $(LOCAL_PATH)/firmware/brcm/brcmfmac43455-sdio.clm_blob:root/lib/firmware/brcm/brcmfmac43455-sdio.clm_blob \
     $(LOCAL_PATH)/firmware/brcm/brcmfmac43455-sdio.clm_blob:$(TARGET_COPY_OUT_RAMDISK)/lib/firmware/brcm/brcmfmac43455-sdio.clm_blob \
-    $(LOCAL_PATH)/firmware/brcm/brcmfmac43455-sdio.txt:root/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.txt \
-    $(LOCAL_PATH)/firmware/brcm/brcmfmac43455-sdio.txt:$(TARGET_COPY_OUT_RAMDISK)/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.txt \
-    $(LOCAL_PATH)/firmware/brcm/brcmfmac43456-sdio.bin:root/lib/firmware/brcm/brcmfmac43456-sdio.bin \
-    $(LOCAL_PATH)/firmware/brcm/brcmfmac43456-sdio.bin:$(TARGET_COPY_OUT_RAMDISK)/lib/firmware/brcm/brcmfmac43456-sdio.bin \
-    $(LOCAL_PATH)/firmware/brcm/brcmfmac43456-sdio.clm_blob:root/lib/firmware/brcm/brcmfmac43456-sdio.clm_blob \
-    $(LOCAL_PATH)/firmware/brcm/brcmfmac43456-sdio.clm_blob:$(TARGET_COPY_OUT_RAMDISK)/lib/firmware/brcm/brcmfmac43456-sdio.clm_blob \
-    $(LOCAL_PATH)/firmware/brcm/brcmfmac43456-sdio.txt:root/lib/firmware/brcm/brcmfmac43456-sdio.raspberrypi,400.txt \
-    $(LOCAL_PATH)/firmware/brcm/brcmfmac43456-sdio.txt:$(TARGET_COPY_OUT_RAMDISK)/lib/firmware/brcm/brcmfmac43456-sdio.raspberrypi,400.txt \
+    $(LOCAL_PATH)/firmware/brcm/brcmfmac43455-sdio.txt:root/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-model-b.txt \
+    $(LOCAL_PATH)/firmware/brcm/brcmfmac43455-sdio.txt:$(TARGET_COPY_OUT_RAMDISK)/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-model-b.txt \
     $(LOCAL_PATH)/firmware/brcm/BCM4345C0.hcd:root/lib/firmware/brcm/BCM4345C0.hcd \
-    $(LOCAL_PATH)/firmware/brcm/BCM4345C5.hcd:root/lib/firmware/brcm/BCM4345C5.hcd \
     $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
     $(PRODUCT_COPY_FILES)
 
 # media configurations
 PRODUCT_COPY_FILES := \
     device/generic/goldfish/camera/media/profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
-    $(LOCAL_PATH)/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
+    device/generic/goldfish/camera/media/codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
     frameworks/av/media/libeffects/data/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.conf \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
@@ -155,7 +142,6 @@ PRODUCT_COPY_FILES := \
     $(LOCAL_PATH)/etc/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
     frameworks/base/data/sounds/effects/ogg/Effect_Tick_48k.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/Effect_Tick.ogg \
     frameworks/base/data/sounds/effects/ogg/camera_click_48k.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/camera_click.ogg \
-    $(LOCAL_PATH)/etc/codec2.vendor.ext.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/codec2.vendor.ext.policy \
     $(PRODUCT_COPY_FILES)
 
 PRODUCT_AAPT_PREF_CONFIG := tvdpi
