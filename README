@@ -3,13 +3,13 @@
   $ sudo apt install libssl-dev python3-setuptools 
 
 # Download Android source
-  https://github.com/android-rpi/local_manifests
+  https://github.com/android-rpi/local_manifests/tree/arpi-main
 
 # Build Android
  Refer to http://source.android.com/source/building.html
 
   $ source build/envsetup.sh
-  $ lunch rpi5-eng
+  $ lunch rpi5-trunk_staging-eng
   $ make ramdisk systemimage vendorimage
 
  Use -j[n] option with make, if build host has a good number of CPU cores.

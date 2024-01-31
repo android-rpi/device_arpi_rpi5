@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+OVERRIDE_DISABLE_DEXOPT_ALL := false
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 USE_OEM_TV_APP := true
 $(call inherit-product, device/google/atv/products/atv_base.mk)
